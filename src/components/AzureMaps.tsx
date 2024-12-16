@@ -1,4 +1,5 @@
 import * as atlas from "azure-maps-control";
+import * as atlasDrawing from "azure-maps-drawing-tools";
 import "azure-maps-control/dist/atlas.min.css";
 import { MutableRefObject, useEffect, useRef } from "react";
 
@@ -53,6 +54,14 @@ const AzureMaps = ({
 
           map.markers.add(marker);
           map.popups.add(popup);
+        });
+
+        //Create an instance of the drawing manager and display the drawing toolbar.
+        const drawingManager = new atlasDrawing.drawing.DrawingManager(map, {
+          toolbar: new atlasDrawing.control.DrawingToolbar({
+            position: "top-right",
+            style: "light",
+          }),
         });
       });
     };
